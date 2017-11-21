@@ -43,14 +43,24 @@ def take_turn(num_rolls, opponent_score, dice=six_sided):
     assert num_rolls <= 10, 'Cannot roll more than 10 dice.'
     assert opponent_score < 100, 'The game should be over.'
 
+    if num_rolls != 0:
+        runscore = roll_dice(num_rolls, dice)
+    else:
+        #def free_bacon(opponent_score):
+        #if num_rolls = 0:
+            opponent_scoreFirstDigit = opponent_score // 10
+            opponent_scoreSecondDigit = opponent_score % 10
+            #example: if opponent_score == 23, becomes 2, 3
+            runscore = 1 + max(opponent_scoreFirst, opponent_scoreSecond)
+        return score
+
+    
 
 def select_dice(score, opponent_score):
     """Select six-sided dice unless the sum of SCORE and OPPONENT_SCORE is a
     multiple of 7, in which case select four-sided dice (Hog wild).
     """
-
-
-
+    
 
 def is_prime(n):
     """Return True if a non-negative number N is prime, otherwise return
