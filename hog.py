@@ -46,8 +46,9 @@ def take_turn(num_rolls, opponent_score, dice=six_sided):
     if num_rolls != 0:
         runscore = roll_dice(num_rolls, dice)
     else:
-        #def free_bacon(opponent_score):
-        #if num_rolls = 0:
+        # not sure if the HOF version would work, but I like the concept more
+        # def free_bacon(opponent_score): 
+        # if num_rolls = 0:
             opponent_scoreFirstDigit = opponent_score // 10
             opponent_scoreSecondDigit = opponent_score % 10
             #example: if opponent_score == 23, becomes 2, 3
@@ -60,7 +61,12 @@ def select_dice(score, opponent_score):
     """Select six-sided dice unless the sum of SCORE and OPPONENT_SCORE is a
     multiple of 7, in which case select four-sided dice (Hog wild).
     """
-    
+    sum_combined = score + opponent_score
+    if sum_combined % 7 == 0:
+        dice = four-sided
+    else:
+        dice = six-sided
+    return dice
 
 def is_prime(n):
     """Return True if a non-negative number N is prime, otherwise return
@@ -69,7 +75,14 @@ def is_prime(n):
     assert type(n) == int, 'n must be an integer.'
     assert n >= 0, 'n must be non-negative.'
     
-  
+    k = 2
+    if n == 0 or 1:
+        return False
+    while k <= 3:
+        if n % k == 0:
+            return False
+    else:
+        return True
 
 def other(who):
     """Return the other player, for a player WHO numbered 0 or 1.
@@ -79,7 +92,7 @@ def other(who):
     >>> other(1)
     0
     """
-
+    return 1 - who
 
 def play(strategy0, strategy1, score0=0, score1=0, goal=GOAL_SCORE):
     """Simulate a game and return the final scores of both players, with
@@ -93,10 +106,37 @@ def play(strategy0, strategy1, score0=0, score1=0, goal=GOAL_SCORE):
     strategy1:  The strategy function for Player 1, who plays second
     score0   :  The starting score for Player 0
     score1   :  The starting score for Player 1
+
+    Implement the play function, which simulates a full game of Hog. Players alternate turns, each using their respective strategy function (Player 0 uses strategy0, etc.), until one of the players reaches the goal score. When the game ends, play returns the final total scores of both players, with Player 0's score first, and Player 1's score second.
+
+Here are some hints:
+
+You should use the functions you have already written! 
+You will need to call take_turn with all three arguments.
+Enforce the remaining special rules: Perfect Piggy and Swine Swap.
+You can get the number of the other player (either 0 or 1) by calling the provided function other.
+A strategy is a function that, given a player's score and their opponent's score, returns how many dice the player wants to roll. A strategy function (such as strategy0 and strategy1) takes two arguments: scores for the current player and opposing player, which both must be non-negative integers. A strategy function returns the number of dice that the current player wants to roll in the turn. Each strategy function should be called only once per turn. Don't worry about the details of implementing strategies yet. You will develop them in Phase 2.
+
     """
     who = 0  # Which player is about to take a turn, 0 (first) or 1 (second)
   
-    
+    while score_p1 < goal and score_p2 < goal
+
+    dice = select_dice(score0, score1)
+        if who == 0:
+            runscore = take_turn(strategy0(score0, score1), score1, dice)
+            score0 += runscore 
+        if who == 1:                   
+            runscore = take_turn(strategy1(score1, score0), score0, dice)
+            score1 += runscore 
+
+        if is_prime(score0 + score1) and score0 != score1:
+            if score0 > score1:
+                score0 += runscore
+            else:
+                score1 += runscore   
+        who = other(who)
+    return score0, score1
 
 #######################
 # Phase 2: Strategies #
