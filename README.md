@@ -22,11 +22,11 @@ This Python project is a bit of spin off the original Pig dice game. It is a two
 	..- Example 2: The current player has 91 and the opponent has 55. The current player rolls five dice that total 17, a prime that is boosted to 19 points for the turn. The current player has 110, so the scores are swapped. The opponent ends the turn with 110 and wins the game.
 
 ## Starter Files
-	All of the starter files can be found [here](http://inst.eecs.berkeley.edu/~cs61a/sp17/proj/hog/hog.zip "hog.zip"). The autograder will occasionally ask for your CalID/Berkeley e-mail. You can just hit enter & then leave the redirect browser. You do not need to be enrolled in this class to use all its materials.
+All of the starter files can be found [here](http://inst.eecs.berkeley.edu/~cs61a/sp17/proj/hog/hog.zip "hog.zip"). The autograder will occasionally ask for your CalID/Berkeley e-mail. You can just hit enter & then leave the redirect browser. You do not need to be enrolled in this class to use all its materials.
 
 ## Testing
-	In order to test your code through the `ok` grader, you have to first pass a series of tests. The tests are simple in that they're just confirming you truly understand what the functions are supposed to do before you write them. Expect a lot of tests!
-	To begin the tests, type `python3 ok -u` into the terminal. Once you would like to test your own code, type in `python3 ok`. Use `python3 ok -q function-name>` for testing specific parts of your code. The tests may annoyingly ask for your Berkeley credentials, so you may want to type `--local` whenever envoking ok.
+In order to test your code through the `ok` grader, you have to first pass a series of tests. The tests are simple in that they're just confirming you truly understand what the functions are supposed to do before you write them. Expect a lot of tests!
+To begin the tests, type `python3 ok -u` into the terminal. Once you would like to test your own code, type in `python3 ok`. Use `python3 ok -q function-name>` for testing specific parts of your code. The tests may annoyingly ask for your Berkeley credentials, so you may want to type `--local` whenever envoking ok.
 
 ## The Actual Project
-	I won't go through each grueling detail here, as I feel the code and supplementary comments should be sufficient. But if you would like the original scaffolding, [certainly](http://inst.eecs.berkeley.edu/~cs61a/su17/proj/hog/ "enjoy!").
+I won't go through each grueling detail here, as I feel the code and supplementary comments should be sufficient. But if you would like the original scaffolding, [certainly](http://inst.eecs.berkeley.edu/~cs61a/su17/proj/hog/ "enjoy!").
