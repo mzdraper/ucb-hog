@@ -55,7 +55,6 @@ def take_turn(num_rolls, opponent_score, dice=six_sided):
             runscore = 1 + max(opponent_scoreFirst, opponent_scoreSecond)
         return score
 
-    
 
 def select_dice(score, opponent_score):
     """Select six-sided dice unless the sum of SCORE and OPPONENT_SCORE is a
@@ -67,6 +66,7 @@ def select_dice(score, opponent_score):
     else:
         dice = six-sided
     return dice
+
 
 def is_prime(n):
     """Return True if a non-negative number N is prime, otherwise return
@@ -84,6 +84,7 @@ def is_prime(n):
     else:
         return True
 
+
 def other(who):
     """Return the other player, for a player WHO numbered 0 or 1.
 
@@ -93,6 +94,7 @@ def other(who):
     0
     """
     return 1 - who
+
 
 def play(strategy0, strategy1, score0=0, score1=0, goal=GOAL_SCORE):
     """Simulate a game and return the final scores of both players, with
@@ -205,6 +207,7 @@ def make_averaged(fn, num_samples=1000):
         return result
     return average
 
+
 def max_scoring_num_rolls(dice=six_sided):
     """Return the number of dice (1 to 10) that gives the highest average turn
     score by calling roll_dice with the provided DICE.  Assume that dice always
@@ -222,8 +225,6 @@ def max_scoring_num_rolls(dice=six_sided):
     >>> max_scoring_num_rolls(dice)
     10
     """
-    trying to split it up so that the average is found in dice_average
-    then return number of dice in second
 
     i, the_average = 1, 0
     averaged_dice = make_average(roll_dice, 1000)
@@ -233,6 +234,7 @@ def max_scoring_num_rolls(dice=six_sided):
             number_of_dice = i
         i++
     return number_of_dice
+
 
 def winner(strategy0, strategy1):
     """Return 0 if strategy0 wins against strategy1, and 1 otherwise."""
@@ -255,6 +257,7 @@ def average_win_rate(strategy, baseline=always_roll(5)):
     # OR
     # is it returning the average wins between rate0 and rate1 
     # --> return (rate0 + rate) / 2
+
 
 def run_experiments():
     """Run a series of strategy experiments and report results."""
@@ -283,9 +286,19 @@ def run_experiments():
 def bacon_strategy(score, opponent_score, margin=8, num_rolls=5):
     """This strategy rolls 0 dice if that gives at least MARGIN points,
     and rolls NUM_ROLLS otherwise.
+
+    A player who chooses to roll zero dice scores one more than the 
+    largest digit in the opponent's total score.
+    If opponent has 42 points, current player gains 1 + max(4, 2) = 5 
+    points by rolling zero dice.
     """
 
-
+    dice = select_dice(score, opponent_score)
+    bacon = take_turn(0, opponent_score, dice)
+    if bacon < margin:
+        return num_rolls
+    else:
+        return 0
 
 def prime_strategy(score, opponent_score, margin=8, num_rolls=5):
     """This strategy rolls 0 dice when it results in a beneficial boost and
@@ -294,13 +307,20 @@ def prime_strategy(score, opponent_score, margin=8, num_rolls=5):
     otherwise.
     """
     
+    dice = select_dice(score, opponent_score)
+    bacon = take_turn(0, opponent_score, dice)
 
+    if is_prime(score + bacon + opponent_score):
+        if bacon + score > opponent_score:
+            return 0
+        elif bacon + score < opponent_score:
+            return num_rolls
+    return bacon(score, opponent_score, margin num_rolls)
 
 
 def final_strategy(score, opponent_score):
 
-    
-
+    # uhhhh, maybe later
 
 ##########################
 # Command Line Interface #
