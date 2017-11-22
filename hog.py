@@ -180,6 +180,8 @@ def make_averaged(fn, num_samples=1000):
 
     To implement this function, you will have to use *args syntax, a new Python
     feature introduced in this project.  See the project description.
+    *args accepts an abritrary number of arguments, then calls another funciton
+    using those same arguments
 
     >>> dice = make_test_dice(3, 1, 5, 6)
     >>> averaged_dice = make_averaged(dice, 1000)
@@ -194,25 +196,65 @@ def make_averaged(fn, num_samples=1000):
     Thus, the average value is 6.0.
     """
     
+    def average(*args)
+        result, i = 0, 0
+        while i =< num_samples: 
+            # =< to account for base case of 1 die argument
+            result = result + f(*args)
+            i++
+        return result
+    return average
 
 def max_scoring_num_rolls(dice=six_sided):
     """Return the number of dice (1 to 10) that gives the highest average turn
     score by calling roll_dice with the provided DICE.  Assume that dice always
     return positive outcomes.
 
+    Implement the max_scoring_num_rolls function, which runs an experiment to 
+    determine the number of rolls (from 1 to 10) that gives the maximum average 
+    score for a turn. Your implementation should use make_averaged and roll_dice.
+
+    If two numbers of rolls are tied for the maximum average score, return the 
+    lower number. For example, if both 3 and 6 achieve a maximum average score, 
+    return 3.
+
     >>> dice = make_test_dice(3)
     >>> max_scoring_num_rolls(dice)
     10
     """
+    trying to split it up so that the average is found in dice_average
+    then return number of dice in second
 
+    i, the_average = 1, 0
+    averaged_dice = make_average(roll_dice, 1000)
+    while i =< 10:
+        if averaged_dice(i, dice) > the_average:
+            the_average = averaged_dice(i, dice)
+            number_of_dice = i
+        i++
+    return number_of_dice
 
 def winner(strategy0, strategy1):
     """Return 0 if strategy0 wins against strategy1, and 1 otherwise."""
+
+    score0, score1 = play(strategy0, strategy1)
+    if score0 > score1:
+        return 0
+    else:
+        return 1
   
 
 def average_win_rate(strategy, baseline=always_roll(5)):
     """Return the average win rate (0 to 1) of STRATEGY against BASELINE."""
     
+    # I am confused
+
+    # rate0 = stuff that finds the win rate
+    # rate1 = 1 - stuff that finds the win rate
+    # return max(rate0, rate 1)
+    # OR
+    # is it returning the average wins between rate0 and rate1 
+    # --> return (rate0 + rate) / 2
 
 def run_experiments():
     """Run a series of strategy experiments and report results."""
